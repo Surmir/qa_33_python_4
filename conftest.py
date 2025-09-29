@@ -2,7 +2,6 @@ import pytest
 from main import BooksCollector
 
 
-
 book_one = 'Гордость и предубеждение и зомби'
 genre_one = 'Ужасы'
 
@@ -12,20 +11,17 @@ def collector():
     collector = BooksCollector()
     return collector
 
-#добавляем книгу 'Гордость и предубеждение и зомби'
+#есть книга в словаре
 @pytest.fixture
-def add_one_book(collector):
-    add_one_book = collector.add_new_book(book_one)
-    return add_one_book
+def book_in_dictionaries(collector):
+    collector.books_genre = {book_one: ''}
 
-#добавляем жанр книге 'Гордость и предубеждение и зомби'
+#есть книга с жанром в словаре
 @pytest.fixture
-def add_one_book_genre(collector, add_one_book):
-    add_one_book_genre = collector.set_book_genre(book_one, genre_one)
-    return add_one_book_genre
+def book_with_genre_in_dictionaries(collector):
+    collector.books_genre = {book_one: genre_one}
 
-#добавляем книгу в избранное
+#есть книга в избранном
 @pytest.fixture
-def add_one_book_in_favorites(collector, add_one_book_genre):
-    add_one_book_in_favorites = collector.add_book_in_favorites(book_one)
-    return add_one_book_in_favorites
+def book_in_favorites(collector):
+    collector.favorites = [book_one]
