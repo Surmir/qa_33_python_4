@@ -6,6 +6,7 @@ from main import BooksCollector
 book_one = 'Гордость и предубеждение и зомби'
 genre_one = 'Ужасы'
 books_genre_one = {'Denny': 'Ужасы', '67': 'Комедии', 'Faust': 'Ужасы', 'Benny': 'Мультфильмы'}
+
 #тестируем класс BooksCollector
 class TestBooksCollector():
 
@@ -51,7 +52,7 @@ class TestBooksCollector():
     
     #5.0 тестируем вывод текущего словаря books_genre
     def test_get_books_genre_get_dictionary_books_genre(self, collector, book_with_genre_in_dictionaries):
-        assert collector.get_books_genre() == collector.books_genre
+        assert collector.get_books_genre() == {book_one: genre_one}
 
     #6.0 тестируем возврат книг, которые подходят детям
     def test_get_books_for_children_get_list_books_not_in_genre_age_rating(self,collector):
@@ -71,4 +72,4 @@ class TestBooksCollector():
 
     #9.0 тестируем получение списка избранных книг
     def test_get_list_of_favorites_books_get_list_books(self, collector, book_in_favorites):
-        assert collector.get_list_of_favorites_books() == collector.favorites
+        assert collector.get_list_of_favorites_books() == [book_one]
