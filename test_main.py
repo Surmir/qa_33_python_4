@@ -34,10 +34,11 @@ class TestBooksCollector():
         assert len(self.collector.books_genre) == 0
 
     #2.0 добавление жанра книги, если книга есть в books_genre и её жанр входит в список genre
-    def test_set_book_genre_add_genre(self):
+    @pytest.mark.parametrize('genre',['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'])
+    def test_set_book_genre_add_genre(self, genre):
         self.collector.books_genre = {book_one: ''}
-        self.collector.set_book_genre(book_one, genre_one)
-        assert self.collector.books_genre == {book_one: genre_one}
+        self.collector.set_book_genre(book_one, genre)
+        assert self.collector.books_genre == {book_one: genre}
 
     #2.1 добавление жанра книге, при отсутствие жанра в genre
     def test_set_book_genre_genre_not_add(self):
